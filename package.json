@@ -29,6 +29,7 @@
     "focus-trap": "^7.5.4",
     "focus-trap-react": "^10.2.3",
     "gapi-script": "^1.2.0",
+    "html2pdf.js": "^0.10.2",
     "react": "^18.3.1",
     "react-datepicker": "^7.3.0",
     "react-dom": "^18.3.1",

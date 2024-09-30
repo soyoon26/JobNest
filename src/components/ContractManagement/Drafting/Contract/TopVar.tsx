@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TopBtn from "./TopBtn";
-import Contract from "./Contract";
-import Receipt from "../Receipt/Receipt";
+import Contract from ".";
+import Receipt from "../Receipt";
 import ConfirmationDocument from "../ConfirmationDocument";
 
 const TopVar: React.FC = () => {

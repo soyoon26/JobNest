@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Search from "../components/ContractManagement/Search/Search";
-import PreContractDrafting from "../components/ContractManagement/Drafting/Pre/PreContractDrafting";
+import PreContractDrafting from "../components/ContractManagement/Drafting/Pre";
 
 const ContractManagementView = () => {
   const [isDraftVisible, setIsDraftVisible] = useState(false);
