@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import { useCallback } from 'react';
-import BookMarkList from './bookmark/BookMarkList';
-import BookMarkManageModal from './bookmark/BookMarkManageModal';
-import axios from 'axios';
-import ToDoApp from './ToDoApp';
-import FullCalender from './FullCalender';
+import { useEffect, useState } from "react";
+import { useCallback } from "react";
+import BookMarkList from "./bookmark/BookMarkList";
+import BookMarkManageModal from "./bookmark/BookMarkManageModal";
+import axios from "axios";
+import ToDoApp from "./ToDoApp";
+import FullCalender from "./FullCalender";
 
 type TBookmark = {
   id: number;
@@ -18,73 +18,73 @@ const BookMark = () => {
   const initialBookmarks = [
     {
       id: 1,
-      title: '씨리얼',
-      url: 'https://seereal.lh.or.kr/main.do',
+      title: "씨리얼",
+      url: "https://seereal.lh.or.kr/main.do",
       checked: true,
-      ogImage: '',
+      ogImage: "",
     },
     {
       id: 2,
-      title: '부동산거래관리시스템',
-      url: 'https://irts.molit.go.kr/',
+      title: "부동산거래관리시스템",
+      url: "https://irts.molit.go.kr/",
       checked: true,
-      ogImage: '',
+      ogImage: "",
     },
     {
       id: 3,
-      title: '건축행정시스템(세움터)',
-      url: 'https://www.eais.go.kr/',
+      title: "건축행정시스템(세움터)",
+      url: "https://www.eais.go.kr/",
       checked: true,
-      ogImage: 'default',
+      ogImage: "default",
     },
     {
       id: 4,
-      title: '토지이용계획열람',
-      url: 'https://www.eum.go.kr/web/ar/lu/luLandDet.jsp',
+      title: "토지이용계획열람",
+      url: "https://www.eum.go.kr/web/ar/lu/luLandDet.jsp",
       checked: true,
-      ogImage: 'https://www.eum.go.kr/web/favicon.ico',
+      ogImage: "https://www.eum.go.kr/web/favicon.ico",
     },
     {
       id: 5,
-      title: '정부24',
-      url: 'https://www.gov.kr/portal/',
+      title: "정부24",
+      url: "https://www.gov.kr/portal/",
       checked: true,
-      ogImage: '',
+      ogImage: "",
     },
     {
       id: 6,
-      title: '인터넷등기소',
-      url: 'https://www.iros.go.kr/',
+      title: "인터넷등기소",
+      url: "https://www.iros.go.kr/",
       checked: true,
-      ogImage: '',
+      ogImage: "",
     },
     {
       id: 7,
-      title: '부동산 공시가격 알리미',
-      url: 'https://www.realtyprice.kr/notice/main/mainBody.htm',
+      title: "부동산 공시가격 알리미",
+      url: "https://www.realtyprice.kr/notice/main/mainBody.htm",
       checked: true,
-      ogImage: '',
+      ogImage: "",
     },
     {
       id: 8,
-      title: '통계지리정보 서비스',
-      url: 'https://sgis.kostat.go.kr/',
+      title: "통계지리정보 서비스",
+      url: "https://sgis.kostat.go.kr/",
       checked: true,
-      ogImage: '',
+      ogImage: "",
     },
     {
       id: 9,
-      title: '일사편리',
-      url: 'https://www.kras.go.kr/',
+      title: "일사편리",
+      url: "https://www.kras.go.kr/",
       checked: true,
-      ogImage: '',
+      ogImage: "",
     },
     {
       id: 10,
-      title: '부동산 계산기',
-      url: 'https://xn--989a00af8jnslv3dba.com/',
+      title: "부동산 계산기",
+      url: "https://xn--989a00af8jnslv3dba.com/",
       checked: true,
-      ogImage: '',
+      ogImage: "",
     },
   ];
 
@@ -92,12 +92,12 @@ const BookMark = () => {
   const [bookmarksArray, setBookmarksArray] = useState<TBookmark[]>([]);
   useEffect(() => {
     // 로컬 스토리지에서 북마크 데이터를 가져옴
-    const savedBookmarks = localStorage.getItem('Bookmark');
+    const savedBookmarks = localStorage.getItem("Bookmark");
     if (savedBookmarks) {
       setBookmarksArray(JSON.parse(savedBookmarks)); // 로컬 스토리지의 데이터를 상태로 설정
     } else {
       // 로컬 스토리지에 데이터가 없으면 초기 북마크를 저장
-      localStorage.setItem('Bookmark', JSON.stringify(initialBookmarks));
+      localStorage.setItem("Bookmark", JSON.stringify(initialBookmarks));
       setBookmarksArray(initialBookmarks); // 상태를 초기 북마크로 설정
     }
   }, []); // 컴포넌트가 마운트될 때만 실행
@@ -115,7 +115,7 @@ const BookMark = () => {
 
   //즐겨찾기 목록 체크 여부 저장
   useEffect(() => {
-    localStorage.setItem('Bookmark', JSON.stringify(bookmarksArray));
+    localStorage.setItem("Bookmark", JSON.stringify(bookmarksArray));
   }, [bookmarksArray]);
 
   const updateBookmarksArray = (item: TBookmark[]) => {
@@ -136,22 +136,22 @@ const BookMark = () => {
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       if (manageModal) {
-        const modalElement = document.getElementById('modal-content');
+        const modalElement = document.getElementById("modal-content");
         if (modalElement && !modalElement.contains(e.target as Node)) {
           // 모달 외부에서 스크롤이 발생하면, body의 스크롤을 허용
-          document.body.style.overflow = 'auto';
+          document.body.style.overflow = "auto";
         } else {
           // 모달 내부에서 스크롤이 발생하면, body의 스크롤을 막음
-          document.body.style.overflow = 'hidden';
+          document.body.style.overflow = "hidden";
         }
       }
     };
 
-    window.addEventListener('wheel', handleWheel);
+    window.addEventListener("wheel", handleWheel);
 
     return () => {
-      window.removeEventListener('wheel', handleWheel);
-      document.body.style.overflow = 'auto'; // 컴포넌트가 unmount될 때 cleanup
+      window.removeEventListener("wheel", handleWheel);
+      document.body.style.overflow = "auto"; // 컴포넌트가 unmount될 때 cleanup
     };
   }, [manageModal]);
 
@@ -159,11 +159,10 @@ const BookMark = () => {
   const [hasFetchedMetaData, setHasFetchedMetaData] = useState(false);
   const fetchMetaData = async (bookmark: TBookmark) => {
     const base_url = import.meta.env.VITE_BASE_URL;
-    const endpoint = '/crolls';
+    const endpoint = "/crolls";
     const full_url = `${base_url}${endpoint}`;
 
     try {
-      // if (bookmark.url === '') {
       const response = await axios.post(full_url, {
         url: bookmark.url,
       });
@@ -171,69 +170,63 @@ const BookMark = () => {
 
       // HTML에서 메타 데이터를 추출
       const parser = new DOMParser();
-      const doc = parser.parseFromString(htmlData, 'text/html');
+      const doc = parser.parseFromString(htmlData, "text/html");
 
       // og:image 추출
-      let ogImageUrl = null;
+      let ogImageUrl: string | null = null;
       const ogImageTag = doc.querySelector('meta[property="og:image"]');
       if (ogImageTag) {
-        ogImageUrl = ogImageTag.getAttribute('content');
+        ogImageUrl = ogImageTag.getAttribute("content");
 
         // ogImageUrl이 상대 경로인 경우 절대 경로로 변경
         if (ogImageUrl && !/^(https?:)?\/\//.test(ogImageUrl)) {
           const url = new URL(bookmark.url);
           ogImageUrl =
             url.origin +
-            (ogImageUrl.startsWith('/') ? ogImageUrl : '/' + ogImageUrl);
+            (ogImageUrl.startsWith("/") ? ogImageUrl : "/" + ogImageUrl);
         }
       }
 
       // og:image가 없는 경우 favicon 추출
-      let faviconUrl = '';
+      let faviconUrl: string | null = null;
       if (!ogImageUrl) {
         const faviconTag = doc.querySelector(
           'link[rel="icon"], link[rel="shortcut icon"]'
         );
-        faviconUrl = faviconTag ? faviconTag.getAttribute('href') : '';
+        faviconUrl = faviconTag ? faviconTag.getAttribute("href") : null;
 
         // faviconUrl이 상대 경로인 경우 절대 경로로 변경
         if (faviconUrl && !/^(https?:)?\/\//.test(faviconUrl)) {
           const url = new URL(bookmark.url);
           faviconUrl =
             url.origin +
-            (faviconUrl.startsWith('/') ? faviconUrl : '/' + faviconUrl);
+            (faviconUrl.startsWith("/") ? faviconUrl : "/" + faviconUrl);
         }
       }
 
       console.log(ogImageUrl || faviconUrl);
-      // 상태 업데이트
+
+      // 상태 업데이트 (ogImage가 빈 문자열인 경우만 업데이트)
       setBookmarksArray((prevBookmarks) =>
         prevBookmarks.map((b) =>
-          b.id === bookmark.id
+          b.id === bookmark.id && b.ogImage === ""
             ? {
                 ...b,
-                ogImage:
-                  (b.ogImage === '' &&
-                    (ogImageUrl || faviconUrl) &&
-                    /^(https?:)?\/\//.test(ogImageUrl || faviconUrl) &&
-                    ogImageUrl) ||
-                  faviconUrl,
-                // ? ogImageUrl || faviconUrl
-                // : ,
+                ogImage: ogImageUrl || faviconUrl || "",
               }
             : b
         )
       );
-      // }
     } catch (err) {
-      console.error('메타 데이터를 가져오는 중 오류 발생:', err);
+      console.error("메타 데이터를 가져오는 중 오류 발생:", err);
     }
   };
+
   // 모든 북마크에 대해 메타 데이터를 가져오는 함수
   const fetchAllMetaData = useCallback(async () => {
     for (const bookmark of bookmarksArray) {
       if (!bookmark.ogImage) {
-        console.log('fetchMetaData 실행');
+        console.log("fetchMetaData 실행");
         await fetchMetaData(bookmark);
       }
     }
@@ -242,22 +235,22 @@ const BookMark = () => {
 
   useEffect(() => {
     if (bookmarksArray.length > 0 && !hasFetchedMetaData) {
-      console.log('fetchAllMetaData 실행');
+      console.log("fetchAllMetaData 실행");
       fetchAllMetaData();
     }
   }, [bookmarksArray, hasFetchedMetaData, fetchAllMetaData]);
 
   return (
-    <div className='ml-[65px] mt-[50px] mr-[65px] max-w-[1440px]'>
-      <p className='text-[35px] mb-[46px] font-extrabold select-none'>
+    <div className="ml-[65px] mt-[50px] mr-[65px] max-w-[1440px]">
+      <p className="text-[35px] mb-[46px] font-extrabold select-none">
         즐겨찾기
       </p>
 
-      <div className='grid grid-cols-7 gap-[30px]'>
+      <div className="grid grid-cols-7 gap-[30px]">
         <BookMarkList bookmarksArray={bookmarksArray} />
-        <div className='border-dash flex justify-center items-center w-[180px] h-[180px] mb-[12px] bg-[#f8f8f8]'>
+        <div className="border-dash flex justify-center items-center w-[180px] h-[180px] mb-[12px] bg-[#f8f8f8]">
           <button
-            className='bg-[#347fff] text-white px-[20px] py-[12px] rounded-[10px] select-none'
+            className="bg-[#347fff] text-white px-[20px] py-[12px] rounded-[10px] select-none"
             onClick={handleBookMark}
           >
             관리하기
@@ -266,7 +259,7 @@ const BookMark = () => {
       </div>
 
       {manageModal && (
-        <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50'>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
           <BookMarkManageModal
             closeModal={closeModal}
             bookmarksArray={bookmarksArray}
@@ -278,7 +271,7 @@ const BookMark = () => {
       <div>
         <FullCalender></FullCalender>
       </div>
-      <div className='absolute right-9 bottom-5 select-none'>
+      <div className="absolute right-9 bottom-5 select-none">
         <ToDoApp />
       </div>
     </div>

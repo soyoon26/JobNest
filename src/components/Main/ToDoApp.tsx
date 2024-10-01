@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { login, logout } from '../../redux/loginSlice';
-import { useDispatch } from 'react-redux';
-import { RootState } from '../../redux/store';
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { login, logout } from "../../redux/loginSlice";
+import { useDispatch } from "react-redux";
+import { RootState } from "../../redux/store";
 
 // 할 일 항목 타입
 type TodoItem = {
@@ -15,19 +15,19 @@ type TodoItem = {
 
 const getTodayDate = () => {
   const today = new Date();
-  return today.toISOString().split('T')[0];
+  return today.toISOString().split("T")[0];
 };
 
 const ToDoApp = () => {
   const [showToDoList, setShowToDoList] = useState(false);
   const [todos, setTodos] = useState<TodoItem[]>([]);
-  const [newTodo, setNewTodo] = useState('');
+  const [newTodo, setNewTodo] = useState("");
   const [nextId, setNextId] = useState(1);
   const [editTodoId, setEditTodoId] = useState<number | null>(null);
-  const [editText, setEditText] = useState('');
+  const [editText, setEditText] = useState("");
   const [menuOpenId, setMenuOpenId] = useState<number | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<'today' | 'past'>(
-    'today'
+  const [selectedCategory, setSelectedCategory] = useState<"today" | "past">(
+    "today"
   );
   const [token, setToken] = useState<string | null>(null);
   const [currentDate, setCurrentDate] = useState<string>(getTodayDate());
@@ -46,7 +46,7 @@ const ToDoApp = () => {
   };
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('authToken');
+    const storedToken = localStorage.getItem("authToken");
     if (storedToken) {
       setToken(storedToken);
       handleLogin(true);
@@ -72,8 +72,8 @@ const ToDoApp = () => {
       const todayDate = getTodayDate();
       if (todayDate !== currentDate) {
         setCurrentDate(todayDate);
-        if (selectedCategory === 'today') {
-          setSelectedCategory('past');
+        if (selectedCategory === "today") {
+          setSelectedCategory("past");
         }
       }
     };
@@ -88,7 +88,7 @@ const ToDoApp = () => {
         (todo) => todo.text === newTodo && todo.date === currentDate
       );
       if (isDuplicate) {
-        alert('이미 동일한 할 일이 존재합니다.');
+        alert("이미 동일한 할 일이 존재합니다.");
         return;
       }
       const newTodoItem = {
@@ -100,7 +100,7 @@ const ToDoApp = () => {
       };
       const updatedTodos = [...todos, newTodoItem];
       setTodos(updatedTodos);
-      setNewTodo('');
+      setNewTodo("");
       setNextId(nextId + 1);
 
       if (token) {
@@ -111,7 +111,7 @@ const ToDoApp = () => {
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       addTodo();
     }
   };
@@ -164,7 +164,7 @@ const ToDoApp = () => {
       localStorage.setItem(`todos_${token}`, JSON.stringify(updatedTodos));
     }
     setEditTodoId(null);
-    setEditText('');
+    setEditText("");
   };
 
   // 오늘 할 일 필터링
@@ -172,7 +172,7 @@ const ToDoApp = () => {
   // 지난 할 일 필터링
   const pastTodos = todos.filter((todo) => todo.date !== currentDate);
   const filteredTodos =
-    selectedCategory === 'today'
+    selectedCategory === "today"
       ? todayTodos.sort((a, b) => {
           if (a.isPriority === b.isPriority) {
             return a.id - b.id;
@@ -187,33 +187,33 @@ const ToDoApp = () => {
         });
 
   const renderTodoList = (todos: TodoItem[]) => (
-    <ul className='mb-4'>
+    <ul className="mb-4">
       {todos.map((todo) => (
-        <li key={todo.id} className='mb-2'>
-          <div className='flex justify-between items-center flex-wrap group relative'>
-            <div className='flex items-center grow-0 shrink-0 basis-4/5'>
+        <li key={todo.id} className="mb-2">
+          <div className="flex justify-between items-center flex-wrap group relative">
+            <div className="flex items-center grow-0 shrink-0 basis-4/5">
               <input
-                type='checkbox'
+                type="checkbox"
                 id={`todo-${todo.id}`}
                 checked={todo.isCompleted}
                 onChange={() => toggleTodo(todo.id)}
-                className='mr-2 accent-[#636363] h-[20px] w-[20px]'
+                className="mr-2 accent-[#636363] h-[20px] w-[20px]"
               />
               {editTodoId === todo.id ? (
                 <input
-                  type='text'
+                  type="text"
                   value={editText}
                   onChange={(e) => setEditText(e.target.value)}
                   onKeyPress={(e) =>
-                    e.key === 'Enter' && handleEditSubmit(todo.id)
+                    e.key === "Enter" && handleEditSubmit(todo.id)
                   }
-                  className='border px-2 py-1 rounded w-40'
+                  className="border px-2 py-1 rounded w-40"
                 />
               ) : (
                 <>
                   <span
                     className={`${
-                      todo.isCompleted ? 'line-through text-gray-500' : ''
+                      todo.isCompleted ? "line-through text-gray-500" : ""
                     } cursor-pointer w-full py-[2px]`}
                     onClick={() => toggleTodo(todo.id)}
                   >
@@ -222,7 +222,7 @@ const ToDoApp = () => {
                   <button
                     onClick={() => togglePriority(todo.id)}
                     className={`${
-                      todo.isPriority ? 'text-yellow-400' : 'text-gray-400'
+                      todo.isPriority ? "text-yellow-400" : "text-gray-400"
                     }`}
                   >
                     ★
@@ -230,30 +230,30 @@ const ToDoApp = () => {
                 </>
               )}
             </div>
-            <div className='flex justify-center items-center grow-0 shrink-0 basis-1/5'>
+            <div className="flex justify-center items-center grow-0 shrink-0 basis-1/5">
               <button
                 onClick={() =>
                   setMenuOpenId(menuOpenId === todo.id ? null : todo.id)
                 }
-                className='text-gray-500 hover:text-gray-700 p-2'
+                className="text-gray-500 hover:text-gray-700 p-2"
               >
                 <img
-                  src='src\assets\images\menubar.png'
-                  alt='메뉴바'
-                  className='hidden group-hover:block'
+                  src="src\assets\images\menubar.png"
+                  alt="메뉴바"
+                  className="hidden group-hover:block"
                 />
               </button>
               {menuOpenId === todo.id && (
-                <div className='absolute top-[-1px] right-10 bg-white w-[58px] border rounded shadow-lg z-50'>
+                <div className="absolute top-[-1px] right-10 bg-white w-[58px] border rounded shadow-lg z-50">
                   <button
                     onClick={() => handleEditClick(todo.id, todo.text)}
-                    className='block text-left px-4 py-2 text-black hover:bg-gray-100 text-sm'
+                    className="block text-left px-4 py-2 text-black hover:bg-gray-100 text-sm"
                   >
                     수정
                   </button>
                   <button
                     onClick={() => removeTodo(todo.id)}
-                    className='block text-left px-4 py-2 text-black hover:bg-gray-100 text-sm'
+                    className="block text-left px-4 py-2 text-black hover:bg-gray-100 text-sm"
                   >
                     삭제
                   </button>
@@ -272,25 +272,25 @@ const ToDoApp = () => {
         <>
           <div>
             {showToDoList && (
-              <div className='bg-white rounded-lg shadow-lg w-72 p-4 border border-gray-300'>
-                <div className='mb-4'>
+              <div className="bg-white rounded-lg shadow-lg w-72 p-4 border border-gray-300">
+                <div className="mb-4">
                   <select
                     value={selectedCategory}
                     onChange={(e) =>
-                      setSelectedCategory(e.target.value as 'today' | 'past')
+                      setSelectedCategory(e.target.value as "today" | "past")
                     }
-                    className='border rounded-md w-[100%] px-2 py-1'
+                    className="border rounded-md w-[100%] px-2 py-1"
                   >
-                    <option value='today'>오늘</option>
-                    <option value='past'>지난 내역</option>
+                    <option value="today">오늘</option>
+                    <option value="past">지난 내역</option>
                   </select>
                 </div>
 
-                {selectedCategory === 'today' && (
+                {selectedCategory === "today" && (
                   <div>
                     {filteredTodos.length === 0 ? (
                       <>
-                        <p className='text-gray-500 mb-[13px] ml-[3px]'>
+                        <p className="text-gray-500 mb-[13px] ml-[3px]">
                           할 일이 없습니다. 추가해보세요!
                         </p>
                       </>
@@ -298,26 +298,26 @@ const ToDoApp = () => {
                       renderTodoList(filteredTodos)
                     )}
                     <input
-                      type='text'
+                      type="text"
                       value={newTodo}
                       onChange={(e) => setNewTodo(e.target.value)}
                       onKeyPress={handleKeyPress}
-                      placeholder='새로운 할 일 작성'
-                      className='w-full border rounded-lg px-2 py-1 mb-4'
+                      placeholder="새로운 할 일 작성"
+                      className="w-full border rounded-lg px-2 py-1 mb-4"
                     />
                     <button
                       onClick={addTodo}
-                      className='w-full bg-[#347fff] text-white px-4 py-2 rounded-md hover:bg-[#347fff] text-[15px] font-extrabold'
+                      className="w-full bg-[#347fff] text-white px-4 py-2 rounded-md hover:bg-[#347fff] text-[15px] font-extrabold"
                     >
                       추가
                     </button>
                   </div>
                 )}
 
-                {selectedCategory === 'past' && (
+                {selectedCategory === "past" && (
                   <>
                     {filteredTodos.length === 0 ? (
-                      <p className='text-gray-500'>지난 내역이 없습니다.</p>
+                      <p className="text-gray-500">지난 내역이 없습니다.</p>
                     ) : (
                       renderTodoList(filteredTodos)
                     )}
@@ -326,9 +326,9 @@ const ToDoApp = () => {
               </div>
             )}
           </div>
-          <div className='flex justify-end mt-[20px]'>
+          <div className="flex justify-end mt-[20px]">
             <button
-              className='px-4 py-2 bg-[#347fff] text-white w-[136px] h-[42px] rounded-md shadow-md text-[15px] font-extrabold'
+              className="px-4 py-2 bg-[#347fff] text-white w-[136px] h-[42px] rounded-md shadow-md text-[15px] font-extrabold"
               onClick={() => setShowToDoList(!showToDoList)}
             >
               오늘 할 일 메모
