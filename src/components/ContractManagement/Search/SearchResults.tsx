@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Spinner from "./Spinner";
-
 import {
   useTable,
   useRowSelect,
@@ -52,10 +51,18 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   isSearchClicked,
 }) => {
   const [data, setData] = useState<Data[]>(filteredData);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
   useEffect(() => {
     setData(filteredData);
   }, [filteredData]);
+
+  const handlePrint = () => {
+    if (iframeRef.current) {
+      iframeRef.current.focus();
+      iframeRef.current.contentWindow?.print();
+    }
+  };
 
   const columns: TableColumn<Data>[] = React.useMemo(
     () => [
@@ -131,7 +138,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
         Cell: ({}: CellProps<Data>) => (
           <button
             className="px-2 py-1 text-gray-500 border border-gray-300 rounded"
-            onClick={() => console.log("계약관리 버튼 클릭")}
+            onClick={() => alert("권한이 없습니다.")}
           >
             상세보기
           </button>
@@ -163,7 +170,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   };
 
   return (
-    <div className="w-[1142px]  bg-white">
+    <div className="w-[1142px] bg-white">
       <div className="w-[1067px] pt-4 mx-auto">
         <div className="flex items-center justify-between my-4">
           <div className="font-bold">
@@ -178,7 +185,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                   borderColor="#335995"
                   textColor="#335995"
                   width={191}
-                  onClick={() => console.log("")}
+                  onClick={handlePrint}
                 />
                 <SearchResultsBtn
                   text="엑셀다운로드"
@@ -192,11 +199,15 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                   onSelect={handlePageSizeChange}
                 />
               </>
-            ) : (
-              <></>
-            )}
+            ) : null}
           </div>
         </div>
+        <iframe
+          ref={iframeRef}
+          src="/개인 정보수집 및 이용 활용 동의서.pdf"
+          className="hidden"
+          title="개인정보 수집 및 이용 동의서"
+        />
         <table
           {...getTableProps()}
           className="w-full mb-4"
@@ -210,7 +221,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                 {headerGroup.headers.map((column, columnIndex) => (
                   <th
                     {...(column.getHeaderProps() as React.HTMLProps<HTMLTableHeaderCellElement>)}
-                    className="font-bold text-center "
+                    className="font-bold text-center"
                     style={{
                       padding: "10px 5px",
                       fontSize: "15px",
@@ -272,7 +283,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
         </table>
         {data.length === 0 && !isLoading && <WarningIcon />}
         {data.length > 0 && (
-          <div className="flex items-center justify-center p-2 pb-8 mt-4 space-x-2 ">
+          <div className="flex items-center justify-center p-2 pb-8 mt-4 space-x-2">
             <button
               onClick={handleFirstPage}
               className="w-[20px] h-[20px] border border-gray-300 text-gray-500 text-[12px] flex items-center justify-center rounded"
