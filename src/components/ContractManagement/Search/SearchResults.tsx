@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import * as XLSX from "xlsx";
 import Spinner from "./Spinner";
 import {
   useTable,
@@ -62,6 +63,38 @@ const SearchResults: React.FC<SearchResultsProps> = ({
       iframeRef.current.focus();
       iframeRef.current.contentWindow?.print();
     }
+  };
+
+  const handleDownloadExcel = () => {
+    if (data.length === 0) {
+      alert("엑셀로 내보낼 데이터가 없습니다.");
+      return;
+    }
+
+    const currentPageData = rows.map((row) => {
+      prepareRow(row);
+      return row.original;
+    });
+
+    const worksheetData = currentPageData.map((item) => ({
+      계약일: item.계약일,
+      잔금일: item.잔금일,
+      만기일: item.만기일,
+      계약서유형: item.계약서유형,
+      거래유형: item.거래유형,
+      소재지: item.소재지,
+      매매보증금: formatNumber(item.매매보증금),
+      매도임대인: item.매도임대인,
+      매수입차인: item.매수입차인,
+      공동중개업소: item.공동중개업소 || "없음",
+      계약서번호: item.계약서번호,
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Contracts");
+
+    XLSX.writeFile(workbook, "contracts.xlsx");
   };
 
   const columns: TableColumn<Data>[] = React.useMemo(
@@ -192,7 +225,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                   borderColor="#D9D9D9"
                   textColor="black"
                   width={96}
-                  onClick={() => console.log("")}
+                  onClick={handleDownloadExcel}
                 />
                 <SearchResultsDropDown
                   selectedItem={`${pageSize}개씩 보기`}
