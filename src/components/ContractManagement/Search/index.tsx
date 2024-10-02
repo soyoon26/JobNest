@@ -68,7 +68,6 @@ const Search: React.FC<SearchProps> = ({ onCreateDraft }) => {
     { label: "계약중" },
     { label: "계약완료" },
   ];
-
   const brokerageTypeOptions = [{ label: "공동중개" }, { label: "단독중개" }];
 
   const [selectedContractType, setSelectedContractType] = useState<
@@ -91,7 +90,6 @@ const Search: React.FC<SearchProps> = ({ onCreateDraft }) => {
   const [isSearchClicked, setIsSearchClicked] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // 데이터
   const fetchData = async () => {
     setIsLoading(true);
     const url = `${import.meta.env.VITE_BASE_URL}/contract-list`;
@@ -120,6 +118,7 @@ const Search: React.FC<SearchProps> = ({ onCreateDraft }) => {
         })) ?? [];
 
       setData(fetchedData);
+      setFilteredData(fetchedData); // 초기에는 전체 데이터
     } catch (err: any) {
       console.error("데이터를 가져오는 데 실패했습니다.", err);
       setIsLoading(false);
@@ -127,6 +126,7 @@ const Search: React.FC<SearchProps> = ({ onCreateDraft }) => {
       setIsLoading(false);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -139,8 +139,8 @@ const Search: React.FC<SearchProps> = ({ onCreateDraft }) => {
     setStartDate(new Date());
     setEndDate(new Date());
     setSelectedPeriod("");
-    setFilteredData(data); // 초기화 시 전체 데이터
-    setIsSearchClicked(false);
+    setFilteredData(data); // 전체 데이터로 초기화
+    setIsSearchClicked(false); // 검색 상태 초기화
   };
 
   const handleSearch = () => {
@@ -148,25 +148,20 @@ const Search: React.FC<SearchProps> = ({ onCreateDraft }) => {
     const startDateObj = startDate ? new Date(startDate) : today;
     const endDateObj = endDate ? new Date(endDate) : today;
 
-    console.log("Start Date Object:", startDateObj?.toDateString());
-    console.log("End Date Object:", endDateObj?.toDateString());
-
     const filteredResults = data.filter((item) => {
       const isContractTypeMatch =
         !selectedContractType || item.계약서유형 === selectedContractType;
       const isTransactionTypeMatch =
         !selectedTransactionType || item.거래유형 === selectedTransactionType;
 
-      // 계약 상태
       const endDate = new Date(item.만기일);
       let isContractStatusMatch = true;
       if (selectedContractStatus === "계약완료") {
-        isContractStatusMatch = endDate < today; // 만기일이 오늘 이전
+        isContractStatusMatch = endDate < today;
       } else if (selectedContractStatus === "계약중") {
-        isContractStatusMatch = endDate >= today; // 만기일이 오늘까지
+        isContractStatusMatch = endDate >= today;
       }
 
-      // 중개 유형
       const isBrokerageTypeMatch =
         !selectedBrokerageType ||
         (selectedBrokerageType === "공동중개" && item.공동중개업소 !== null) ||
@@ -174,7 +169,6 @@ const Search: React.FC<SearchProps> = ({ onCreateDraft }) => {
 
       const contractDate = new Date(item.계약일);
       let isDateInRange = true;
-      // 초기 검색도 필터링하기
       if (startDateObj && endDateObj) {
         if (startDateObj.toDateString() === endDateObj.toDateString()) {
           isDateInRange =
@@ -200,10 +194,10 @@ const Search: React.FC<SearchProps> = ({ onCreateDraft }) => {
 
   return (
     <div className="mb-16">
-      <div className="flex  w-[1142px] mt-[80px]  justify-between">
+      <div className="flex w-[1142px] mt-[80px] justify-between">
         <div className="flex items-center mb-4">
           <img src={clipboard} alt="Clipboard" className="w-[23px] h-[23px]" />
-          <span className="text-[23px]  font-bold">계약관리</span>
+          <span className="text-[23px] font-bold">계약관리</span>
         </div>
         <Btn onClick={onCreateDraft} />
       </div>
@@ -282,9 +276,11 @@ const Search: React.FC<SearchProps> = ({ onCreateDraft }) => {
           </div>
         </h1>
       </div>
-      {isSearchClicked && (
-        <SearchResults filteredData={filteredData} isLoading={isLoading} />
-      )}
+      <SearchResults
+        filteredData={filteredData}
+        isLoading={isLoading}
+        isSearchClicked={isSearchClicked} // 검색 여부
+      />
     </div>
   );
 };

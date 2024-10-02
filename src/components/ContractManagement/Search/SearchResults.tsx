@@ -30,6 +30,7 @@ type Data = {
 type SearchResultsProps = {
   filteredData: Data[];
   isLoading: boolean;
+  isSearchClicked: boolean;
 };
 
 const formatDate = (dateString: string): string => {
@@ -48,6 +49,7 @@ const formatNumber = (number: number | undefined): string => {
 const SearchResults: React.FC<SearchResultsProps> = ({
   filteredData,
   isLoading,
+  isSearchClicked,
 }) => {
   const [data, setData] = useState<Data[]>(filteredData);
 
@@ -165,7 +167,8 @@ const SearchResults: React.FC<SearchResultsProps> = ({
       <div className="w-[1067px] pt-4 mx-auto">
         <div className="flex items-center justify-between my-4">
           <div className="font-bold">
-            검색결과 <span className="text-[#335995]">{data.length}</span>
+            {isSearchClicked ? "검색 결과" : "전체 계약 목록"}{" "}
+            <span className="text-[#335995]">{data.length}</span>
           </div>
           <div className="flex gap-2">
             {data.length >= 1 ? (
