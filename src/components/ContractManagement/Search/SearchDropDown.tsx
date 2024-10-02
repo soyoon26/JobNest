@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaChevronDown } from "react-icons/fa";
 
 interface DropDownProps {
@@ -13,16 +13,34 @@ const SearchDropDown: React.FC<DropDownProps> = ({
   onSelect,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
+
   const handleItemClick = (item: string) => {
     onSelect(item);
-    console.log(item);
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="relative w-[240px] h-[36px]">
+    <div ref={dropdownRef} className="relative w-[240px] h-[36px]">
       <button
         onClick={toggleDropdown}
         className="w-full h-full rounded border border-gray bg-white text-[#6F6F6F] text-sm flex items-center justify-between px-2"
