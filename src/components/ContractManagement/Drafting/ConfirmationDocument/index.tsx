@@ -11,10 +11,10 @@ const ConfirmationDocument: React.FC = () => {
   const pageRef = useRef<HTMLDivElement>(null);
 
   const pages = [
-    { id: 1, name: "FirstPage", content: <FirstPage /> },
-    { id: 2, name: "SecondPage", content: <SecondPage /> },
-    { id: 3, name: "ThirdPage", content: <ThirdPage /> },
-    { id: 4, name: "LastPage", content: <LastPage /> },
+    { id: 1, name: "1쪽", content: <FirstPage /> },
+    { id: 2, name: "2쪽", content: <SecondPage /> },
+    { id: 3, name: "3쪽", content: <ThirdPage /> },
+    { id: 4, name: "4쪽", content: <LastPage /> },
   ];
 
   const handleSaveAsPDF = () => {
@@ -22,16 +22,19 @@ const ConfirmationDocument: React.FC = () => {
       const element = pageRef.current;
 
       const opt = {
-        margin: [10, 10, 10, 10], // 여백 (mm)
+        margin: [10, 10, 10, 10],
         filename: `Page-${pages[currentPage - 1].name}.pdf`,
         image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2 },
+        html2canvas: {
+          scale: 2,
+          width: 1223,
+          windowWidth: 1223,
+        },
         jsPDF: {
           unit: "mm",
-          format: "a4", // PDF를 A4 용지 크기
-          orientation: "portrait", // 세로 모드
+          format: "a4", // A4
+          orientation: "portrait",
         },
-        pagebreak: { mode: ["avoid-all", "css", "legacy"] }, // 페이지 넘김
       };
 
       html2pdf().from(element).set(opt).save();
@@ -53,7 +56,7 @@ const ConfirmationDocument: React.FC = () => {
           />
         </div>
         <div className="w-[1223px] mt-4 h-[1px] bg-gray-300 mb-10"></div>
-        {/* 화면에 표시 */}
+
         <div ref={pageRef} className="pdf-page">
           {pages[currentPage - 1].content}
         </div>
@@ -73,7 +76,7 @@ const ConfirmationDocument: React.FC = () => {
                 : "text-[#335995] border border-[#335995]"
             }`}
           >
-            {page.name}쪽
+            {page.name}
           </button>
         ))}
       </div>
