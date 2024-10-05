@@ -61,17 +61,21 @@ const RealEstate = () => {
   }
 
   return (
-    <div className="p-4 bg-white">
-      <span className="mr-2">1. 부동산의 표시</span>
-      <button className="text-white bg-[#335995] rounded-md text-[13px] w-[129px] h-[32px] ">
-        PDF 열람 및 연동
-      </button>
-      <div className="flex items-center text-sm text-gray-600">
-        <FaExclamationCircle className="mr-2 text-gray-500" />
-        <span className="my-4">
-          공부연동이 가능한 항목입니다. 마우스로 클릭 시 기준 공부명을 확인할 수
-          있습니다.
-        </span>
+    <div className="flex flex-col w-full p-4 bg-white items-j">
+      <div className="w-full justify-items-start">
+        <div className="flex items-center">
+          <span className="mr-2">1. 부동산의 표시</span>
+          <button className="text-white bg-[#335995] rounded-md text-[13px] w-[129px] h-[32px] ">
+            PDF 열람 및 연동
+          </button>
+        </div>
+        <div className="flex items-center text-sm text-gray-600">
+          <FaExclamationCircle className="mr-2 text-gray-500" />
+          <span className="my-4">
+            공부연동이 가능한 항목입니다. 마우스로 클릭 시 기준 공부명을 확인할
+            수 있습니다.
+          </span>
+        </div>
       </div>
 
       {/* 소재지 */}
@@ -205,9 +209,11 @@ const RealEstate = () => {
           </div>
         </div>
       </div>
-      <div className="flex mt-10 items">
-        <input type="text" className="w-[169px] ml-1 mr-2 border-32" />
-        원정 은 계약 시에 지급하고 영수함.
+      <div className="w-full justify-items-start">
+        <div className="flex mt-5 items">
+          <input type="text" className="w-[169px]  mr-2 border-32" />
+          원정 은 계약 시에 지급하고 영수함.
+        </div>
       </div>
     </div>
   );

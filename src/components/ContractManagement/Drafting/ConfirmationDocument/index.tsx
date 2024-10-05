@@ -23,7 +23,7 @@ const ConfirmationDocument: React.FC = () => {
 
       const opt = {
         margin: [10, 10, 10, 10],
-        filename: `Page-${pages[currentPage - 1].name}.pdf`,
+        filename: `중개대상물확인서-${pages[currentPage - 1].name}.pdf`,
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: {
           scale: 2,
@@ -49,7 +49,7 @@ const ConfirmationDocument: React.FC = () => {
         <div className="flex justify-end w-full gap-2 pr-4 mt-10 mb-4">
           <ContractBtn />
           <ContractBtn
-            text="저장"
+            text="다운로드"
             color="#335995"
             textColor="white"
             onClick={handleSaveAsPDF}

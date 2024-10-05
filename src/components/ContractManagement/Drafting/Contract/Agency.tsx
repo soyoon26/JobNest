@@ -42,7 +42,7 @@ const Agency: React.FC = () => {
   };
 
   return (
-    <div className="text-[14px]">
+    <div className="text-[14px] w-full">
       <div className="flex justify-end m-5">
         <button
           onClick={addAgency}

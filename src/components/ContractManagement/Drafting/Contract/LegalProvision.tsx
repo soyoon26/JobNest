@@ -47,19 +47,21 @@ const LegalProvision = () => {
   ];
 
   return (
-    <>
-      {data.map((item) => (
-        <div key={item.no} className="flex m-2">
-          <span className="flex font-bold w-[45px] h-[72px] items-center justify-center text-center">
-            제{item.no}조
-          </span>
-          <div
-            className="flex w-[1170px] items-center pl-4 h-[72px] text-[14px] border border-gray"
-            dangerouslySetInnerHTML={{ __html: item.content }}
-          />
-        </div>
-      ))}
-    </>
+    <div className="w-full">
+      <div className="flex-col  items-j">
+        {data.map((item) => (
+          <div key={item.no} className="flex m-2">
+            <span className="flex font-bold w-[45px] h-[72px] items-center justify-center text-center">
+              제{item.no}조
+            </span>
+            <div
+              className="flex w-[1170px] items-center pl-4 h-[72px] text-[14px] border border-gray"
+              dangerouslySetInnerHTML={{ __html: item.content }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
