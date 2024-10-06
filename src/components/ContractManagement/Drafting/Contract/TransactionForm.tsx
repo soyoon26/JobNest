@@ -115,7 +115,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ formType }) => {
               </div>
             </div>
           </div>
-          <div className="w-[198px] items-j border-g">(인)</div>
+          <div className="w-[198px] items-j border-gy border-gright">(인)</div>
         </div>
 
         {/* 추가*/}
@@ -123,11 +123,11 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ formType }) => {
           <div>
             {people.map((person, index) => (
               <div key={index} className="flex">
-                <div className="w-[189px] flex-col items justify-center text-center border-g h-[89px] bg-[#E5E6EB]">
+                <div className="w-[189px] flex-col items justify-center text-center border-gb border-gx h-[89px] bg-[#E5E6EB]">
                   {formType}
                 </div>
 
-                <div className="flex flex-col w-[851px] border-g">
+                <div className="flex flex-col w-[851px] border-gb">
                   <div className="flex">
                     <div className="w-[189px] h-[44px] pl-2 items border-gright border-gb bg-gray-100 flex items-center">
                       주소
@@ -157,7 +157,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ formType }) => {
                     </div>
                   </div>
                 </div>
-                <div className="w-[198px] items-j border-g flex items-center">
+                <div className="w-[198px] items-j border-gb border-gx flex items-center">
                   (인)
                 </div>
               </div>

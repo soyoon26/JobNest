@@ -83,10 +83,10 @@ const RealEstate = () => {
         <div className="h-[42px] w-[114px] flex items-center pl-4 text-center bg-[#E5E6EB] border border-gray-300">
           소재지
         </div>
-        <div className="w-[1113px] text-[12px] gap-1 items-center flex border border-gray-300 h-[42px]">
+        <div className="w-[1113px] text-[12px] gap-1 items-center flex border  h-[42px]">
           <input
             type="text"
-            value={locationAddress} // 동, 호 제외한 주소
+            value={locationAddress}
             readOnly
             className="w-[798px] ml-1 pl-2 rounded h-[32px] bg-[#F0F0F3] border border-gray-300 "
           />
@@ -114,8 +114,8 @@ const RealEstate = () => {
       </div>
 
       {/* 토지 */}
-      <div className="flex border w-[1227px] border-gray-300 text-[12px]">
-        <div className=" h-[52px] text-[15px] w-[114px] flex items-center pl-4 text-center bg-[#E5E6EB] border-x border-gray-300">
+      <div className="flex  w-[1227px]  text-[12px] border-gx">
+        <div className=" h-[52px] text-[15px] w-[114px] flex items-center pl-4 text-center bg-[#E5E6EB]  border-gray-300">
           토지
         </div>
         <div className="flex pl-2 items-center w-[68px] h-[52px] text-center bg-gray-100 border-x border-gray-300 ">
@@ -141,14 +141,14 @@ const RealEstate = () => {
           </div>
         </div>
 
-        <div className="p-2 w-[92px] text-center bg-gray-100 border-x border-gray-300 ">
+        <div className="p-2 w-[92px] text-center bg-gray-100 border-x ">
           대지권 종류
           <FaExclamationCircle className="ml-2 text-gray-500 " />
         </div>
         <div className="w-[158px] flex items-center justify-center">
           <ContractDropDown items={landRights} width="150px" />
         </div>
-        <div className="p-2 w-[92px] text-center bg-gray-100 border border-gray-300 ">
+        <div className="p-2 w-[92px] text-center bg-gray-100 border-x ">
           대지권 비율
           <FaExclamationCircle className="ml-2 text-gray-500 " />
         </div>
@@ -167,7 +167,7 @@ const RealEstate = () => {
 
       {/* 건물 */}
       <div className="flex w-[1227px] border text-[12px] border-gray-300 h-[42px]">
-        <div className=" h-[42px] text-[15px] w-[114px] flex items-center pl-4 text-center bg-[#E5E6EB] border border-gray-300">
+        <div className=" h-[42px] text-[15px] w-[114px] flex items-center pl-4 text-center bg-[#E5E6EB]  border-gray-300">
           건물
         </div>
         <div className="flex pl-2 items-center w-[68px]  text-center bg-gray-100 border-x border-gray-300 ">

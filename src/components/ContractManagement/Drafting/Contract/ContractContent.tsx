@@ -81,7 +81,7 @@ const ContractContent = () => {
         </FormRow>
 
         <FormRow label="잔금">
-          <div className="flex items-center h-[43px]">
+          <div className="flex items-center border-gb h-[43px]">
             <span className="px-2">金</span>
             <input type="text" className=" w-[458px] border-32" />
             <span className="ml-2">원정 은</span>
@@ -114,13 +114,11 @@ const FormRow = ({
   children?: React.ReactNode;
 }) => {
   return (
-    <div className="flex items-center ">
-      <div className="col-span-2 bg-gray-200 h-full w-[115px] flex items-center justify-center text-sm border border-gray-300">
+    <div className="flex items-center border-gt border-gx">
+      <div className="col-span-2 bg-gray-200 h-full w-[115px] flex items-j text-sm ">
         {label}
       </div>
-      <div className="w-[1114px] flex flex-col  border border-gray-300">
-        {children}
-      </div>
+      <div className="w-[1114px] flex flex-col ">{children}</div>
     </div>
   );
 };

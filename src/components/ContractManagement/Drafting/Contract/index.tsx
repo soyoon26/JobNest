@@ -22,10 +22,8 @@ const Contract: React.FC = () => {
     (state: RootState) => state.contract.detailAddress
   );
 
-  // ref 설정을 통해 PDF로 변환할 요소 참조
   const contractRef = useRef<HTMLDivElement>(null);
 
-  // PDF 저장 함수
   const handleSaveAsPDF = () => {
     if (contractRef.current) {
       const element = contractRef.current;

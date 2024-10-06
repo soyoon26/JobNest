@@ -51,15 +51,15 @@ const Agency: React.FC = () => {
           + 개업 공인중개사 정보 추가
         </button>
       </div>
-      <div className="flex">
-        <div className="w-[189px] items justify-center  text-center border-g h-[137px] bg-[#E5E6EB]">
+      <div className="flex border-g">
+        <div className="w-[189px] items-j  text-center  h-[136px] bg-[#E5E6EB]">
           개인
           <br />
           공인중개사
         </div>
         <div>
-          <div className=" w-[1050px] border-g">
-            <div className="w-[189px] h-[44px] pl-2 items border-r border-gray-300 bg-gray-100">
+          <div className=" w-[1050px] border-gb flex">
+            <div className="w-[189px] h-[45px] pl-2 items border-gx bg-gray-100">
               사무소 소재지
             </div>
             <div className="w-[861px] items-j">
@@ -71,8 +71,8 @@ const Agency: React.FC = () => {
               />
             </div>
           </div>
-          <div className=" w-[1050px] border-g">
-            <div className="w-[189px] h-[44px] pl-2 border-r items border-gray-300 bg-gray-100">
+          <div className=" w-[1050px] flex border-gl">
+            <div className="w-[189px]  h-[44px] pl-2 border-r items border-gright bg-gray-100">
               사무소 명칭
             </div>
             <div className="w-[565px] items-j">
@@ -85,7 +85,7 @@ const Agency: React.FC = () => {
                 className="w-[552px] border-32"
               />
             </div>
-            <div className="bg-gray-100 w-[92px] pl-2 h-[44px] border-g">
+            <div className="bg-gray-100 w-[92px] pl-2 h-[44px] border-gx items">
               대표자명
             </div>
             <div className="items-j">
@@ -100,7 +100,7 @@ const Agency: React.FC = () => {
               (인)
             </div>
           </div>
-          <div className="flex w-[1050px] border border-gray-300">
+          <div className="flex w-[1050px] border-gt border-gl">
             <div className="w-[189px] h-[44px] pl-2 items border-r border-gray-300 bg-gray-100">
               전화번호
             </div>
@@ -127,7 +127,7 @@ const Agency: React.FC = () => {
                 className="w-[236px]  border-32"
               />
             </div>
-            <div className="w-[92px] h-[44px] items  border-x border-gray-300 bg-gray-100">
+            <div className="w-[92px] h-[44px] items  border-gx bg-gray-100">
               소속 공인중개사
             </div>
             <div className="items">
@@ -156,11 +156,11 @@ const Agency: React.FC = () => {
                 공인중개사
               </div>
               <div>
-                <div className="w-[1050px] border-g flex">
-                  <div className="w-[189px] h-[44px] pl-2 items border-r border-gray-300 bg-gray-100 flex items-center">
+                <div className="w-[1050px]  flex">
+                  <div className="w-[189px] h-[44px] pl-2 items border-gright  bg-gray-100 flex items-center">
                     사무소 소재지
                   </div>
-                  <div className="w-[861px] items-j flex items-center">
+                  <div className="w-[861px] items-j flex items-center border-gright">
                     <span className="w-[842px] ml-2">{agency.address}</span>
                   </div>
                 </div>
@@ -181,7 +181,7 @@ const Agency: React.FC = () => {
                     (인)
                   </div>
                 </div>
-                <div className="flex w-[1050px] border border-gray-300">
+                <div className="flex w-[1050px] border-gx border-gb border-gray-300">
                   <div className="w-[189px] h-[44px] pl-2 items border-r border-gray-300 bg-gray-100 flex items-center">
                     전화번호
                   </div>
