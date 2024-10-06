@@ -16,7 +16,9 @@ const ConfirmationDocument: React.FC = () => {
     { id: 3, name: "3쪽", content: <ThirdPage /> },
     { id: 4, name: "4쪽", content: <LastPage /> },
   ];
-
+  const handlePrint = () => {
+    window.print();
+  };
   const handleSaveAsPDF = () => {
     if (pageRef.current) {
       const element = pageRef.current;
@@ -47,7 +49,7 @@ const ConfirmationDocument: React.FC = () => {
     <div className="relative flex bg-white border-g">
       <div className="flex-col flex-1 items-j">
         <div className="flex justify-end w-full gap-2 pr-4 mt-10 mb-4">
-          <ContractBtn />
+          <ContractBtn onClick={handlePrint} />
           <ContractBtn
             text="다운로드"
             color="#335995"
@@ -55,10 +57,13 @@ const ConfirmationDocument: React.FC = () => {
             onClick={handleSaveAsPDF}
           />
         </div>
+
         <div className="w-[1223px] mt-4 h-[1px] bg-gray-300 mb-10"></div>
 
         <div ref={pageRef} className="pdf-page">
-          {pages[currentPage - 1].content}
+          <div className="printable-area2">
+            {pages[currentPage - 1].content}
+          </div>
         </div>
       </div>
 

@@ -23,8 +23,8 @@ const Receipt: React.FC = () => {
         },
         jsPDF: {
           unit: "mm",
-          format: "a4", // A4
-          orientation: "portrait", // 세로
+          format: "a4", // A4 용지 크기
+          orientation: "portrait", // 세로 모드
         },
       };
 
@@ -34,10 +34,17 @@ const Receipt: React.FC = () => {
     }
   };
 
+  // 출력
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
     <div className="px-10 mb-10 font-bold bg-white border border-gray-300">
       <div className="flex justify-end w-full gap-2 mt-10">
-        <ContractBtn />
+        {/* 출력 버튼 */}
+        <ContractBtn onClick={handlePrint} />
+        {/* 다운로드 버튼 */}
         <ContractBtn
           text="다운로드"
           color="#335995"
@@ -46,7 +53,7 @@ const Receipt: React.FC = () => {
         />
       </div>
 
-      <div ref={receiptRef} className="w-full">
+      <div ref={receiptRef} className="w-full printable-area">
         <div className="w-full mt-4 h-[1px] bg-gray-300 mb-10"></div>
         <div className="w-full text-center h-[66px] mb-5 rounded border border-[#CCCCCC] text-[45px] font-bold">
           영수증

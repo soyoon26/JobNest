@@ -94,3 +94,65 @@ body {
 .items-j {
   @apply flex items-center justify-center;
 }
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .printable-area,
+  .printable-area * {
+    visibility: visible;
+  }
+  .printable-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .printable-area * {
+    visibility: visible;
+  }
+
+  .printable-area {
+    position: absolute;
+    left: -160px;
+    top: 0;
+    width: 100%;
+  }
+  .printable-area1 * {
+    visibility: visible;
+  }
+  .printable-area1 {
+    visibility: visible;
+    position: absolute;
+    left: -190px;
+    top: -200px;
+    width: 100%;
+    transform: scale(0.75);
+  }
+
+  .printable-area2 * {
+    visibility: visible;
+  }
+  .printable-area2 {
+    visibility: visible;
+    position: absolute;
+    left: -300px;
+    top: -400px;
+    width: 100%;
+    transform: scale(0.7);
+  }
+}
