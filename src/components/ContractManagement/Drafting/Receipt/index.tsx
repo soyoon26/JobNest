@@ -62,7 +62,7 @@ const Receipt: React.FC = () => {
         {/* 성명, 금액 */}
         <div className="flex flex-col mb-10 border border-gray-300">
           <div className="flex">
-            <div className="w-[115px] bg-gray-200 h-[43px] flex items-center justify-center text-[14px] border border-gray-300">
+            <div className="w-[115px] bg-gray-200 h-[43px] flex items-center justify-center text-[14px] border-gright border-gb">
               성명
             </div>
             <div className="flex flex-col flex-grow">
@@ -155,7 +155,7 @@ const Receipt: React.FC = () => {
           <div className="w-[80px] bg-[#E5E6EB] h-[43px] text-[14px] flex items-center justify-center border-r border-gray-300">
             발행일
           </div>
-          <div className="w-[194px] border border-gray-300 flex items-center justify-center h-[43px]">
+          <div className="w-[194px] border-gy border-gright flex items-center justify-center h-[43px]">
             <ReceiptDate />
           </div>
         </div>
