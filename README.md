@@ -20,17 +20,24 @@
 
 ## 📋 주요 기능
 ### ▪ 홈 대시보드
+
 <img src="readme_assets/즐겨찾기.gif" width="600" />
+
 ### ▪ 할 일 목록과 구글 캘린더 연동
+
 <img src="readme_assets/캘린더.gif" width="600" />
+
 ### ▪ 계약 검색 및 작성 관리
+
 <img src="readme_assets/계약검색1.gif" width="600" />
 <img src="readme_assets/계약검색2.gif" width="600" />
 <img src="readme_assets/계약서 작성옵션.gif" width="600" />
 <img src="readme_assets/계약서.gif" width="600" />
 <img src="readme_assets/중개대상물.gif" width="600" />
 <img src="readme_assets/영수증.gif" width="600" />
+
 ### ▪ 등기 대장 열람
+
 <img src="readme_assets/등기대장.gif" width="600" />
 <img src="readme_assets/등기대장2.gif" width="600" />
 
