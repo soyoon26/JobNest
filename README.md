@@ -21,7 +21,7 @@
 ## 📋 주요 기능
 ### ▪ 홈 대시보드
 
-
+<img src="readme_assets/캘린더할일.gif" width="600" />
 
 ### ▪ 할 일 목록과 구글 캘린더 연동
 
@@ -32,6 +32,7 @@
 
 <img src="readme_assets/계약검색2.gif" width="600" />
 <img src="readme_assets/등기대장2.gif" width="600" />
+
 <img src="readme_assets/계약서 작성옵션.gif" width="600" />
 <img src="readme_assets/계약서.gif" width="600" />
 <img src="readme_assets/중개대상물.gif" width="600" />
