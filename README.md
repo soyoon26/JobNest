@@ -3,7 +3,7 @@
 ## 📆 개발기간
 2024.09.02 ~ 2024.09.27
 ## ✨ 배포주소
-https://jobnest-contract.netlify.app/contractManagement
+[https://jobnest-contract](https://jobnest-contract.netlify.app/)
 
 
 ## 🛠 기술스택
