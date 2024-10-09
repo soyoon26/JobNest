@@ -5,6 +5,8 @@
 ## ✨ 배포주소
 [https://jobnest-contract](https://jobnest-contract.netlify.app/)
 
+## ✍디자인
+[피그마 주소](https://www.figma.com/design/4jFcpxbW6zemM3DN5uaAIc/%EC%9D%B8%EC%82%AC%EC%9D%B4%EB%93%9C%EC%95%84%EC%9B%83-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=0-1&t=BLXm1417ClKuyWYZ-1)
 
 ## 🛠 기술스택
 ### ▪FE
